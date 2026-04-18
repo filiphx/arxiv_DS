@@ -2,7 +2,10 @@ name: arXiv → Telegram (Dynamical Systems)
 
 on:
   schedule:
-    - cron: "0 8 * * *"
+    # Roda todo dia às 07:00 UTC = 04:00 BRT (só dias úteis)
+    - cron: "0 7 * * 1-5"
+
+  # Permite disparar manualmente pela aba Actions do GitHub
   workflow_dispatch:
 
 env:
