@@ -1,0 +1,30 @@
+name: arXiv → Telegram (Dynamical Systems)
+
+on:
+  schedule:
+    # Roda todo dia às 08:00 UTC = 05:00 BRT / 09:00 BRT no horário de verão
+    # Edite o horário à vontade: https://crontab.guru/
+    - cron: "0 8 * * *"
+
+  # Permite disparar manualmente pela aba Actions do GitHub
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run arXiv bot
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python arxiv_telegram.py
