@@ -2,12 +2,11 @@ name: arXiv → Telegram (Dynamical Systems)
 
 on:
   schedule:
-    # Roda todo dia às 08:00 UTC = 05:00 BRT / 09:00 BRT no horário de verão
-    # Edite o horário à vontade: https://crontab.guru/
     - cron: "0 8 * * *"
-
-  # Permite disparar manualmente pela aba Actions do GitHub
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   notify:
